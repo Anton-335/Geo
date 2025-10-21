@@ -23,8 +23,9 @@ public class GeoServiceImplTest {
     }
 
     @Test
-    void shouldReturnUnknownForOtherIp() {
-        Location location = geoService.byIp("1.2.3.4");
-        assertEquals(Country.USA, location.getCountry());
+    void shouldThrowExceptionForUnknownIp() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            geoService.byIp("1.2.3.4");
+        });
     }
 }
